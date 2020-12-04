@@ -1,0 +1,6 @@
+services:
+    - Symplify\PHPStanRules\Naming\SimpleNameResolver
+
+    -
+        class: Rector\PHPStanExtensions\Rule\NoDirectDocCommentCallRule
+        tags: [phpstan.rules.rule]
