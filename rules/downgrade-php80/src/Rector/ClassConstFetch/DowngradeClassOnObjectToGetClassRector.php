@@ -5,10 +5,7 @@ declare(strict_types=1);
 namespace Rector\DowngradePhp80\Rector\ClassConstFetch;
 
 use PhpParser\Node;
-use PhpParser\Node\Arg;
 use PhpParser\Node\Expr\ClassConstFetch;
-use PhpParser\Node\Expr\FuncCall;
-use PhpParser\Node\Name;
 use PhpParser\Node\Param;
 use Rector\Core\Rector\AbstractRector;
 use Rector\Core\ValueObject\PhpVersionFeature;
@@ -62,24 +59,15 @@ CODE_SAMPLE
      */
     public function refactor(Node $node): ?Node
     {
-        dump(
-            PHP_VERSION,
-            $this->isAtLeastPhpVersion(PhpVersionFeature::CLASS_ON_OBJECT)
-        );
-        if (! $this->isAtLeastPhpVersion(PhpVersionFeature::CLASS_ON_OBJECT)) { dump('here 1');die;
-            return null;
+        dump(PHP_VERSION);
+        if (! $this->isAtLeastPhpVersion(PhpVersionFeature::CLASS_ON_OBJECT)) {
+            dump('here 1');
+            die;
         }
 
         dump($node->class);
         dump($node->name);
-        dump('here 2');die;
-
-        if (! $this->isName($node->name, 'class')) {
-            return null;
-        }
-
-        dump($node->class);
-
-        return new FuncCall(new Name('get_class'), [new Arg($node->class)]);
+        dump('here 2');
+        die;
     }
 }
